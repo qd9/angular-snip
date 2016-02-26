@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<body ng-app="propagation">
+    <!-- emit  -->
+    <!-- <div ng-controller="zeroCtrl" style="border:3px solid black;padding:5px;">
+    	<p> Silbing message: {{ messageemit }}</p>
+    	
+    </div>
+    <div ng-controller="firstCtrl" style="border:5px solid black;padding:5px;">
+        <h1>Parent Controller</h1>
+        <p>Emit message: {{ message }}</p>
+        <br>
+        <div ng-controller="secondCtrl" style="border:5px solid black; padding:5px;">
+            <h1>Child Controller</h1>
+            <input type="text" ng-model="msg">
+            <button ng-click="handleClick(msg)"> Emit </button>
+        </div>
+    </div> -->
+    <!-- broadcast -->
+    <div style="border:3px solid black; padding:5px;" ng-controller="Ctrl1">
+        <h1> broadcast parent ctrl </h1>
+        <input type="text" ng-model="msg">
+        <button ng-click="myFunction(msg)"> broadcast </button>
+        <div style="border:5px solid black; padding:5px;" ng-controller="Ctrl2">
+            <h2> broadcast child ctrl </h2>
+            <p> broadcast message: {{ message1 }}</p>
+        </div>
+    </div>
+    <div style="border:3px solid black; padding:5px;" ng-controller="Ctrl3">
+        <h1> Silbing </h1>
+        <p>silbing message : {{ message2 }}</p>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js">
+    </script>
+    <script>
+    var app = angular.module("propagation", []);
+    // emit
+    // app.controller('secondCtrl', ['$scope',"$rootScope",function($scope,$rootScope) {
+    //     $scope.handleClick = function(arg) {
+    //         $rootScope.$broadcast("eventName",arg);
+    //         // $scope.$parent.$parent.$broadcast("eventName", arg);
+    //         console.log(arg)
+    //     };
+    // }]);
+    // app.controller('firstCtrl', ['$scope', function($scope) {
+    //     $scope.$on("eventName", function(object, value) {
+    //         $scope.message = value;
+    //         // console.log(object);
+    //         // console.log(object.targetScope.msg);
+    //         console.log(value);
+    //     });
+    // }]);
+    // app.controller('zeroCtrl', ['$scope', function($scope){
+    // 	$scope.$on("eventName",function(object,value){
+    // 		console.log(value);
+    // 		$scope.messageemit = value;
+    // 	});
+    	
+    // }]);
+    //broadcast
+    app.controller('Ctrl1', ["$rootScope", "$scope", function($rootscope, $scope) {
+        $scope.myFunction = function(value) {
+            $rootscope.$broadcast("eventPhase", value);
+        }
+    }]);
+    app.controller('Ctrl2', ['$scope', function($scope) {
+        $scope.$on("eventPhase", function(object, value) {
+            $scope.message1 = value;
+        });
+    }]);
+    app.controller('Ctrl3', ['$scope', function($scope) {
+        $scope.$on("eventPhase", function(object, value) {
+            $scope.message2 = value;
+
+        });
+    }]);
+    </script>
+</body>
+
+</html>

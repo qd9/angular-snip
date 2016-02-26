@@ -1,0 +1,64 @@
+<!-- <!DOCTYPE html>
+<input id="demo" type="text">
+<button type="button" onclick="myFunction()">test input</button>
+<br>
+<p id="message"></p>
+<script>
+function myFunction() {
+    var message, x;
+    message = document.getElementById("message");
+    message.innerHTML = "";
+    x = document.getElementById("demo").value;
+
+    try {
+        if (x === "") throw "empty";
+        if (isNaN(x)) throw "not a number";
+        
+        if (x < 5) throw "lower";
+        if (x > 10) throw "higher";
+
+    } catch (err) {
+        message.innerHTML = "input is :" + err;
+    } finally {
+        document.getElementById("demo").value = "sb";
+    }
+}
+</script>
+
+</html> -->
+<!-- -------------------------------------------------------- -->
+<!DOCTYPE html>
+<input class="demo" type="text">
+<input class="demo" type="text">
+<button type="button" onclick="myFunction()">test input</button>
+<br>
+<p class="message"></p>
+<script>
+function myFunction() {
+    var message, x, y,z;
+    message = document.getElementsByClassName("message")[0];
+    message.innerHTML = "";
+    x = document.getElementsByClassName("demo")[1].value;
+    y = document.getElementsByClassName("demo");
+    z = document.getElementsByClassName("demo")[0];
+
+    try {
+        if (x === "") throw "empty";
+        if (isNaN(x)) throw "not a number";
+
+        if (x < 5) throw "lower";
+        if (x > 10) throw "higher";
+
+    } catch (err) {
+        message.innerHTML = "input is :" + err;
+    } finally {
+        document.getElementsByClassName("demo")[0].value = "sb";
+    }
+    console.log(x);
+    console.log(y);
+    console.log(z);
+
+}
+</script>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js">
+    </script>
+    <script>
+    var app =angular.module('propagation',[]);
+    app.controller('Ctrl', ['$scope', function($scope){
+        
+        
+    }])
+    
+    </script>
+</head>
+
+<body ng-app="propagation">
+    <div ng-controller="Ctrl" style="border:3px solid black;padding:5px;">
+        <h1>Parent Controller</h1>
+        
+        <input type="text" ng-model="message">
+         <p>Emit message: {{ message }}</p>
+    </div>
+</body>
+
+</html>

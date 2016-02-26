@@ -1,0 +1,51 @@
+<DOCTYPE html>
+
+    <body ng-app="myApp">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.2/angular.min.js"></script>
+        <div ng-controller="myCtrl">
+            <div>
+                <ul>
+                    <li ng-repeat="list in lists track by $index">{{ list }}
+                        <input type="text" ng-hide="visible" ng-model="updatedata">
+                        <button ng-click="functionClickUpdate()">update</button>
+                        <button ng-click="functionClickDelete($index)">delete</button>
+                    </li>
+                </ul>
+            </div>
+            <input type="text" ng-model="obj" />
+            <button ng-click="functionClick()">create</button>
+        </div>
+        <script>
+        var app = angular.module("myApp", []);
+        app.controller('myCtrl', ['$scope', function($scope) {
+            $scope.lists = [];
+            $scope.obj = "";
+            $scope.visible = true;
+            $scope.index = -1;
+            $scope.functionClick = function() {
+                var data = $scope.obj;
+                if (data !== "") {
+                    $scope.lists.push(data);
+                }
+                $scope.obj = "";
+
+            };
+            $scope.functionClickUpdate = function() {
+                $scope.visible =!$scope.visible;
+                //console.log(this);
+
+            };
+            $scope.functionClickDelete = function(index){
+            	if(index>=0 && index<= $scope.lists.length){
+            		 $scope.lists.splice(index,1)
+            	}
+               
+            };
+
+        }])
+
+        </script>
+    </body>
+
+
+    </html>
